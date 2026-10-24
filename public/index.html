@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StudyMate</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body data-theme="system">
+    <div class="study-app">
+      <aside class="sidebar">
+        <div class="brand-row">
+          <div class="brand-mark">◔</div>
+          <div class="brand-name">StudyMate</div>
+          <button class="mini-icon" type="button" aria-label="Quick actions">◫</button>
+        </div>
+
+        <nav class="nav" aria-label="Main navigation">
+          <button class="nav-item active" type="button" data-nav="home">
+            <span class="nav-icon">⌂</span>
+            <span>Home</span>
+          </button>
+          <button class="nav-item" type="button" data-nav="ai-tutor">
+            <span class="nav-icon">✦</span>
+            <span>AI Tutor</span>
+          </button>
+          <button class="nav-item" type="button" data-nav="focus">
+            <span class="nav-icon">◔</span>
+            <span>Focus</span>
+          </button>
+        </nav>
+
+        <div class="tools-block">
+          <div class="group-label">TOOLS</div>
+          <button class="nav-item sub-item" type="button" data-nav="library">
+            <span class="nav-icon">▤</span>
+            <span>Library</span>
+          </button>
+          <button class="nav-item sub-item" type="button" data-nav="exam-simulator">
+            <span class="nav-icon">◫</span>
+            <span>Exam Simulator</span>
+          </button>
+          <button class="nav-item sub-item" type="button" data-nav="grades">
+            <span class="nav-icon">↗</span>
+            <span>Grades</span>
+          </button>
+        </div>
+
+        <div class="usage-card">
+          <div class="usage-header">
+            <span>Usage</span>
+            <span class="usage-tag">FREE</span>
+          </div>
+          <div class="usage-row">
+            <span>Uploads</span>
+            <strong>0/3</strong>
+          </div>
+          <div class="usage-row">
+            <span>Exams</span>
+            <strong>0/1</strong>
+          </div>
+          <div class="usage-row">
+            <span>AI chat</span>
+            <strong>0/10</strong>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <div class="topbar-right">
+            <div class="theme-switcher">
+              <label for="themeSelect">Theme</label>
+              <select id="themeSelect" aria-label="Theme selection">
+                <option value="dark">Dark mode</option>
+                <option value="light">Light mode</option>
+                <option value="system">System</option>
+              </select>
+            </div>
+          </div>
+        </header>
+
+        <section class="hero">
+          <h1>
+            Hi Arvisaba638
+            <span class="wave">👋</span>
+            <span class="hero-trail">What do you want to learn today?</span>
+          </h1>
+          <p>Add notes, a video or a link — get notes, flashcards and quizzes.</p>
+        </section>
+
+        <section class="action-grid" aria-label="Learning input options">
+          <button class="action-card" id="uploadAction" type="button">
+            <div class="action-icon">⤴</div>
+            <div class="action-title">Upload</div>
+            <div class="action-subtitle">Image, file, audio, video</div>
+          </button>
+
+          <button class="action-card" id="pasteAction" type="button">
+            <div class="action-icon">⌁</div>
+            <div class="action-title">Paste</div>
+            <div class="action-subtitle">YouTube, website, text</div>
+          </button>
+        </section>
+
+        <div class="section-divider">
+          <span>⚡ HOW IT WORKS</span>
+        </div>
+
+        <section class="steps-grid">
+          <article class="step-card">
+            <div class="step-badge">1</div>
+            <h3>Add your material</h3>
+            <p>PDF, slides, images, video or a link.</p>
+          </article>
+
+          <article class="step-card">
+            <div class="step-badge">2</div>
+            <h3>AI builds your material</h3>
+            <p>Notes, flashcards and quizzes in under a minute.</p>
+          </article>
+
+          <article class="step-card">
+            <div class="step-badge">3</div>
+            <h3>Train for the exam</h3>
+            <p>Repeat what you find hard — and track progress.</p>
+          </article>
+        </section>
+
+        <div class="chip-row" aria-label="Study tags">
+          <span class="study-chip active">Notes</span>
+          <span class="study-chip">Flashcards</span>
+          <span class="study-chip">Quizzes</span>
+          <span class="study-chip">Oral practice</span>
+          <span class="study-chip">Progress</span>
+        </div>
+
+        <div id="assistantOutput" class="assistant-output hidden" aria-live="polite"></div>
+        <input id="fileInput" type="file" hidden />
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

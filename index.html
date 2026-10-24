@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cognivra AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h1>Cognivra</h1>
+            </div>
+            
+            <nav class="nav-menu">
+                <button class="nav-item active" onclick="switchTab('dashboard')">
+                    <span class="icon">◫</span> Dashboard
+                </button>
+                <button class="nav-item" onclick="switchTab('chat')">
+                    <span class="icon">○</span> Chat
+                </button>
+                <button class="nav-item" onclick="switchTab('analytics')">
+                    <span class="icon">↗</span> Analytics
+                </button>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="usage-progress">
+                    <span>Generations resets in 10 days</span>
+                    <div class="progress-bar"><div class="fill"></div></div>
+                </div>
+                <div class="user-profile">
+                    <div class="avatar">
+                        <!-- SVG Pear-House Logo as Avatar -->
+                        <svg viewBox="0 0 100 100" style="width: 100%; height: 100%;">
+                            <path d="M50 15 C65 15 85 40 85 65 C85 85 65 90 50 90 C35 90 15 85 15 65 C15 40 35 15 50 15 Z" fill="#fcd34d" stroke="#78350f" stroke-width="3"/>
+                            <path d="M48 15 Q45 5 55 5" fill="none" stroke="#78350f" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M55 5 Q70 0 75 10 Q65 15 55 5" fill="#84cc16" stroke="#78350f" stroke-width="2"/>
+                            <circle cx="40" cy="55" r="2.5" fill="#78350f"/>
+                            <circle cx="50" cy="55" r="2.5" fill="#78350f"/>
+                        </svg>
+                    </div>
+                    <div class="user-info">
+                        <strong>Best Student</strong>
+                        <span>Free Plan</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            
+            <!-- DASHBOARD VIEW -->
+            <section id="dashboard-view" class="view active-view">
+                <div class="header-top">
+                    <div class="breadcrumb">◫ Dashboard</div>
+                    <div class="theme-selector">
+                        <select id="themeSelect" onchange="changeTheme(this.value)">
+                            <option value="light">Theme: Light</option>
+                            <option value="dark">Theme: Dark</option>
+                            <option value="pink">Theme: Pink</option>
+                        </select>
+                    </div>
+                </div>
+
+                <h2 class="greeting">Good evening, Student!</h2>
+
+                <!-- BIG HERO BANNER (Like the orange one) -->
+                <div class="hero-banner">
+                    <div class="hero-content">
+                        <div class="hero-badges">
+                            <span>⏱ TODAY'S FOCUS</span>
+                            <span>🔄 SPACED REPETITION</span>
+                        </div>
+                        <h3>Learn a New Topic</h3>
+                        <p>Enter a topic to understand it beyond memorization.</p>
+                        
+                        <div class="hero-input-row">
+                            <input type="text" id="topicInput" placeholder="e.g., European Capitals">
+                            <select id="languageSelect">
+                                <option value="English">English</option>
+                                <option value="Bangla">Bangla</option>
+                            </select>
+                            <button class="btn-black" onclick="explainTopic()">Start learning ↗</button>
+                        </div>
+                    </div>
+                    <div class="hero-graphic">
+                        <!-- The cute pear character -->
+                        <svg viewBox="0 0 100 100" style="width: 120px; height: 120px;">
+                            <path d="M50 15 C65 15 85 40 85 65 C85 85 65 90 50 90 C35 90 15 85 15 65 C15 40 35 15 50 15 Z" fill="#fcd34d" stroke="#78350f" stroke-width="3"/>
+                            <rect x="65" y="45" width="15" height="15" rx="3" fill="#fff" stroke="#78350f" stroke-width="2"/>
+                            <rect x="45" y="70" width="20" height="20" rx="10" fill="#b45309" stroke="#78350f" stroke-width="2"/>
+                            <circle cx="40" cy="55" r="2.5" fill="#78350f"/>
+                            <circle cx="50" cy="55" r="2.5" fill="#78350f"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- QUICK ACTIONS GRID -->
+                <div class="section-title">QUICK ACTIONS</div>
+                <div class="quick-actions-grid">
+                    <div class="action-card" onclick="switchTab('chat')">
+                        <div class="action-icon">✎</div>
+                        <h4>New flashcards</h4>
+                    </div>
+                    <div class="action-card" onclick="switchTab('chat')">
+                        <div class="action-icon">☰</div>
+                        <h4>New quiz</h4>
+                    </div>
+                    <div class="action-card" onclick="switchTab('chat')">
+                        <div class="action-icon">↑</div>
+                        <h4>Check Understanding</h4>
+                    </div>
+                </div>
+
+                <!-- OUTPUT AREA FOR LEARN -->
+                <div id="home-loading" class="loading hidden">Cognivra is thinking...</div>
+                <div id="home-output" class="output-card hidden">
+                    <div id="output-text"></div>
+                    <div class="output-actions">
+                        <button class="btn-secondary" onclick="makeSimpler()" id="simplerBtn">✨ Make it simpler</button>
+                    </div>
+                </div>
+
+                <!-- RECENT SESSIONS -->
+                <div class="section-title">RECENT SESSIONS</div>
+                <div class="recent-list">
+                    <div class="recent-item">
+                        <div class="recent-icon">📘</div>
+                        <div class="recent-info">
+                            <strong>Biology - Cell Biology</strong>
+                            <span>Quiz • Yesterday</span>
+                        </div>
+                        <div class="recent-score">8/12</div>
+                        <button class="btn-text">Continue ↗</button>
+                    </div>
+                    <div class="recent-item">
+                        <div class="recent-icon">📐</div>
+                        <div class="recent-info">
+                            <strong>Mathematics - Derivatives</strong>
+                            <span>Flashcards • Yesterday</span>
+                        </div>
+                        <div class="recent-score">32 cards</div>
+                        <button class="btn-text">Continue ↗</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CHAT VIEW (Check Understanding) -->
+            <section id="chat-view" class="view">
+                <div class="header-top">
+                    <div class="breadcrumb">○ Chat</div>
+                </div>
+                <h2 class="greeting">Check My Understanding</h2>
+                
+                <div class="chat-container">
+                    <div class="topic-pill" id="display-topic">Current Topic: None</div>
+                    <p class="instruction">Explain the topic back to Cognivra in your own words:</p>
+                    <textarea id="studentInput" rows="5" placeholder="Type what you understood here..."></textarea>
+                    <button class="btn-black full-width" onclick="checkUnderstanding()">Check my understanding</button>
+                    
+                    <div id="chat-loading" class="loading hidden">Cognivra is reading...</div>
+                    <div id="chat-output" class="output-card hidden"></div>
+                </div>
+            </section>
+
+            <!-- ANALYTICS VIEW (Placeholder) -->
+            <section id="analytics-view" class="view">
+                <h2 class="greeting">Analytics</h2>
+                <p>Your progress will appear here.</p>
+            </section>
+
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
